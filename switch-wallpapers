@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import sys
+import time
+import os
+
+def main():
+    directory = os.fsencode("/home/andrei/wallpapers/")
+    while True:
+        for file in os.listdir(directory):
+            path = os.path.join(directory, file).decode("utf-8")
+
+            f = open("/home/andrei/.config/nitrogen/bg-saved.cfg", "w")
+
+            f.write("[xin_0]\n")
+            f.write("file=" + path + "\n")
+            f.write("mode=0\nbgcolor=#000000\n\n")
+
+            f.write("[xin_1]\n")
+            f.write("file=" + path + "\n")
+            f.write("mode=0\nbgcolor=#000000\n\n")
+
+            f.close()
+
+            cmd = "nitrogen --restore &"
+            
+            os.system(cmd)
+            time.sleep(600)
+
+if __name__ == "__main__":
+    main()
